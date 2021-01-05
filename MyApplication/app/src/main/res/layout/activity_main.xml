@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!" />
+    <!--<com.example.chencj.myapplication.CustScratchView
+        android:background="#000"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />-->
+    <ImageView
+        android:background="@mipmap/ic_launcher"
+        android:id="@+id/iv1"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+  <!--  <ImageView
+        android:id="@+id/picasso_iv"
+        android:background="#000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <Button
+            android:text="button_recycleview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="button_recycleview"
+            android:id="@+id/button_recycleview" />
+
+        <Button
+            android:id="@+id/click_btn"
+            android:text="click_btn"
+            android:onClick="click_btn"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <Button
+            android:text="button_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="button_location"
+            android:id="@+id/button_location" />
+        <Button
+            android:text="button_hook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="button_hook"
+            android:id="@+id/button_hook" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <Button
+            android:text="button_flow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="button_flow"
+            android:id="@+id/button_flow" />
+
+
+    </LinearLayout>
+</LinearLayout>
