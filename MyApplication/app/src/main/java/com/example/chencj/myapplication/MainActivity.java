@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.SmsMessage;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -21,6 +22,7 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.example.chencj.myapplication.activity.RecycleViewActivity;
 import com.example.chencj.myapplication.flow.FlowActivity;
 import com.example.chencj.myapplication.hook.HookActivity;
+import com.example.chencj.myapplication.surfacefling.SurfaceDemoActivity;
 import com.example.chencj.myapplication.util.ViewAnimatorUtils;
 
 import java.text.SimpleDateFormat;
@@ -170,4 +172,15 @@ public class MainActivity extends AppCompatActivity {
         return criteria;
     }
 
+    public void button_surfacefling(View v) {
+        startActivity(new Intent(this, SurfaceDemoActivity.class));
+    }
+    public void encodesms(View v) {
+        SmsMessage.SubmitPdu submitPdu = SmsMessage.getSubmitPdu("10086", "1008611", "aä", false);
+        byte[] encodedMessage = submitPdu.encodedMessage;
+        for (int i = 0; i < encodedMessage.length; i++) {
+            Log.d("MainActivity chencj ", "encodesms: "+Integer.toHexString(encodedMessage[i])+" ");
+        }
+
+    }
 }
