@@ -20,8 +20,10 @@ import android.widget.TextView;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.example.chencj.myapplication.activity.RecycleViewActivity;
+import com.example.chencj.myapplication.charts.ChartDemoActivity;
 import com.example.chencj.myapplication.flow.FlowActivity;
 import com.example.chencj.myapplication.hook.HookActivity;
+import com.example.chencj.myapplication.mpcharts.ChartsDemo1Activity;
 import com.example.chencj.myapplication.surfacefling.SurfaceDemoActivity;
 import com.example.chencj.myapplication.util.ViewAnimatorUtils;
 
@@ -182,5 +184,10 @@ public class MainActivity extends AppCompatActivity {
             Log.d("MainActivity chencj ", "encodesms: "+Integer.toHexString(encodedMessage[i])+" ");
         }
 
+    }
+
+    public void chart(View v){
+        //startActivity(new Intent(this, ChartDemoActivity.class));
+        startActivity(new Intent(this, ChartsDemo1Activity.class));
     }
 }

@@ -5,8 +5,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Handler;
 
-import com.squareup.leakcanary.LeakCanary;
-import com.squareup.leakcanary.RefWatcher;
 
 import java.util.concurrent.Executor;
 
@@ -15,7 +13,7 @@ import java.util.concurrent.Executor;
  */
 
 public class App extends Application {
-    private RefWatcher refWatcher;
+   // private RefWatcher refWatcher;
     private static Handler mHandler;
 
     public static Executor mThreadPool = AsyncTask.THREAD_POOL_EXECUTOR;
@@ -26,19 +24,19 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        refWatcher= setupLeakCanary();
+        //refWatcher= setupLeakCanary();
         mHandler = new Handler();
     }
 
-    private RefWatcher setupLeakCanary() {
+    /*private RefWatcher setupLeakCanary() {
         if (LeakCanary.isInAnalyzerProcess(this)) {
             return RefWatcher.DISABLED;
         }
         return LeakCanary.install(this);
-    }
+    }*/
 
-    public static RefWatcher getRefWatcher(Context context) {
+   /* public static RefWatcher getRefWatcher(Context context) {
         App leakApplication = (App) context.getApplicationContext();
         return leakApplication.refWatcher;
-    }
+    }*/
 }

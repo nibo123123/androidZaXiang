@@ -28,6 +28,12 @@
         <activity android:name=".hook.RegisterActivity" />
         <activity android:name=".flow.FlowActivity" />
         <activity android:name=".surfacefling.SurfaceDemoActivity" />
+        <activity android:name=".charts.ChartDemoActivity" />
+        <activity android:name=".charts.LinearChartDemoActivity" />
+        <activity android:name=".charts.SpeedChartDemoActivity" />
+        <activity android:name=".charts.AboutActivity" />
+        <activity android:name=".charts.TempoChartDemoActivity" />
+        <activity android:name=".mpcharts.ChartsDemo1Activity" />
     </application>
 
 </manifest>

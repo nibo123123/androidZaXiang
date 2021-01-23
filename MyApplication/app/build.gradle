@@ -37,11 +37,19 @@ dependencies {
 // https://mvnrepository.com/artifact/com.squareup.okhttp/okhttp
     compile group: 'com.squareup.okhttp', name: 'okhttp', version: '2.7.5'
 
-    compile 'com.squareup.leakcanary:leakcanary-android:1.5.2'
-    compile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.2'
+    //compile 'com.squareup.leakcanary:leakcanary-android:1.5.2'
+    //compile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.2'
 
     compile 'com.android.support:recyclerview-v7:25.0.0'
 
     compile "com.hanks:htextview-base:0.1.1"
+
+    compile 'com.github.lecho:hellocharts-android:v1.5.8'
+
+    // https://mvnrepository.com/artifact/com.github.PhilJay/MPAndroidChart
+   // compile group: 'com.github.PhilJay', name: 'MPAndroidChart', version: 'v3.0.3'
+// https://mvnrepository.com/artifact/com.github.PhilJay/MPAndroidChart
+    compile group: 'com.github.PhilJay', name: 'MPAndroidChart', version: 'v2.2.4'
+
 
 }

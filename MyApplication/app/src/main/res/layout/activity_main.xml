@@ -103,6 +103,11 @@
             android:layout_height="wrap_content"
             android:onClick="encodesms"
             android:id="@+id/encodesms" />
-
+        <Button
+            android:text="chart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="chart"
+            android:id="@+id/chart" />
     </LinearLayout>
 </LinearLayout>

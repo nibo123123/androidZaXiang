@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Reset" android:id="@+id/action_reset" />
+    <item android:title="add_line" android:id="@+id/action_add_line" />
+    <item android:title="toggle_lines" android:id="@+id/action_toggle_lines" />
+    <item android:title="toggle_points" android:id="@+id/action_toggle_points" />
+    <item android:title="toggle_gradient" android:id="@+id/action_toggle_gradient" />
+    <item android:title="toggle_cubic" android:id="@+id/action_toggle_cubic" />
+    <item android:title="toggle_area" android:id="@+id/action_toggle_area" />
+    <item android:title="point_color" android:id="@+id/action_point_color" />
+    <item android:title="shape_circles" android:id="@+id/action_shape_circles" />
+    <item android:title="shape_square" android:id="@+id/action_shape_square" />
+    <item android:title="shape_diamond" android:id="@+id/action_shape_diamond" />
+    <item android:title="toggle_labels" android:id="@+id/action_toggle_labels" />
+    <item android:title="toggle_axes" android:id="@+id/action_toggle_axes" />
+    <item android:title="toggle_axes_names" android:id="@+id/action_toggle_axes_names" />
+    <item android:title="animate" android:id="@+id/action_animate" />
+    <item android:title="toggle_selection_mode" android:id="@+id/action_toggle_selection_mode" />
+    <item android:title="toggle_touch_zoom" android:id="@+id/action_toggle_touch_zoom" />
+    <item android:title="zoom_both" android:id="@+id/action_zoom_both" />
+    <item android:title="zoom_horizontal" android:id="@+id/action_zoom_horizontal" />
+    <item android:title="zoom_vertical" android:id="@+id/action_zoom_vertical" />
+
+</menu>
