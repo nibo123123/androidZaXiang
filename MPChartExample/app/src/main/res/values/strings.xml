@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MPAndroidChart Example</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="tip_end">    —  End  —    </string>
+
+    <!--content item-->
+    <string name="ci_0_name">Line Chart</string>
+    <string name="ci_0_desc">A simple demonstration of the linechart.</string>
+    <string name="ci_1_name">Line Chart (Dual YAxis)</string>
+    <string name="ci_1_desc">Demonstration of the linechart with dual y-axis.</string>
+    <string name="ci_2_name">Bar Chart</string>
+    <string name="ci_2_desc">A simple demonstration of the bar chart.</string>
+    <string name="ci_3_name">Horizontal Bar Chart</string>
+    <string name="ci_3_desc">A simple demonstration of the horizontal bar chart.</string>
+    <string name="ci_4_name">Combined Chart</string>
+    <string name="ci_4_desc">Demonstrates how to create a combined chart (bar and line in this case).</string>
+    <string name="ci_5_name">Pie Chart</string>
+    <string name="ci_5_desc">A simple demonstration of the pie chart.</string>
+    <string name="ci_6_name">Pie Chart with value lines</string>
+    <string name="ci_6_desc">A simple demonstration of the pie chart with polyline notes.</string>
+    <string name="ci_7_name">Scatter Chart</string>
+    <string name="ci_7_desc">A simple demonstration of the scatter chart.</string>
+    <string name="ci_8_name">Bubble Chart</string>
+    <string name="ci_8_desc">A simple demonstration of the bubble chart.</string>
+    <string name="ci_9_name">Stacked Bar Chart</string>
+    <string name="ci_9_desc">A simple demonstration of a bar chart with stacked bars.</string>
+    <string name="ci_10_name">Stacked Bar Chart Negative</string>
+    <string name="ci_10_desc">A simple demonstration of stacked bars with negative and positive values.</string>
+    <string name="ci_11_name">Another Bar Chart</string>
+    <string name="ci_11_desc">Implementation of a BarChart that only shows values at the bottom.</string>
+    <string name="ci_12_name">Multiple Lines Chart</string>
+    <string name="ci_12_desc">A line chart with multiple DataSet objects. One color per DataSet.</string>
+    <string name="ci_13_name">Multiple Bars Chart</string>
+    <string name="ci_13_desc">A bar chart with multiple DataSet objects. One multiple colors per DataSet.</string>
+    <string name="ci_14_name">Charts in ViewPager Fragments</string>
+    <string name="ci_14_desc">Demonstration of charts inside ViewPager Fragments. In this example the focus was on the design and look and feel of the chart.</string>
+    <string name="ci_15_name">BarChart inside ListView</string>
+    <string name="ci_15_desc">Demonstrates the usage of a BarChart inside a ListView item.</string>
+    <string name="ci_16_name">Multiple charts inside ListView</string>
+    <string name="ci_16_desc">Demonstrates the usage of different chart types inside a ListView.</string>
+    <string name="ci_17_name">Inverted Line Chart</string>
+    <string name="ci_17_desc">Demonstrates the feature of inverting the y-axis.</string>
+    <string name="ci_18_name">Candle Stick Chart</string>
+    <string name="ci_18_desc">Demonstrates usage of the CandleStickChart.</string>
+    <string name="ci_19_name">Cubic Line Chart</string>
+    <string name="ci_19_desc">Demonstrates cubic lines in a LineChart.</string>
+    <string name="ci_20_name">Radar Chart</string>
+    <string name="ci_20_desc">Demonstrates the use of a spider-web like (net) chart.</string>
+    <string name="ci_21_name">Colored Line Chart</string>
+    <string name="ci_21_desc">Shows a LineChart with different background and line color.</string>
+    <string name="ci_22_name">Realtime Chart</string>
+    <string name="ci_22_desc">This chart is fed with new data in realtime. It also restrains the view on the x-axis.</string>
+    <string name="ci_23_name">Dynamical data adding</string>
+    <string name="ci_23_desc">This Activity demonstrates dynamical adding of Entries and DataSets (real time graph).</string>
+    <string name="ci_24_name">Performance Line Chart</string>
+    <string name="ci_24_desc">Renders up to 30.000 objects smoothly.</string>
+    <string name="ci_25_name">Sinus Bar Chart</string>
+    <string name="ci_25_desc">A Bar Chart plotting the sinus function with 8.000 values.</string>
+    <string name="ci_26_name">Chart in ScrollView</string>
+    <string name="ci_26_desc">This demonstrates how to use a chart inside a ScrollView.</string>
+    <string name="ci_27_name">BarChart positive / negative</string>
+    <string name="ci_27_desc">This demonstrates how to create a BarChart with positive and negative values in different colors.</string>
+    <string name="ci_28_desc">This demonstrates how to use this library with Realm.io mobile database.</string>
+    <string name="ci_28_name">Realm.io Database</string>
+    <string name="ci_29_name">Time Chart</string>
+    <string name="ci_29_desc">Simple demonstration of a time-chart. This chart draws one line entry per hour originating from the current time in milliseconds.</string>
+    <string name="ci_30_name">Filled LineChart</string>
+    <string name="ci_30_desc">This demonstrates how to fill an area between two LineDataSets.</string>
+    <string name="ci_31_name">Half PieChart</string>
+    <string name="ci_31_desc">This demonstrates how to create a 180 degree PieChart.</string>
+
+    // About
+    <string name="about_name">About</string>
+    <string name="about_desc">Something about this sample app.</string>
+    <string name="about_text">
+        This sample app is base on \"https://github.com/PhilJay/MPAndroidChart/tree/master/MPChartExample\".\n\n
+        I only changed the ui and fixed some bug.\n\n
+        The repository of this sample app is \"https://github.com/zhuanghongji/MPAndroidChart/tree/master/MPChartExample\".\n\n
+        If you found some issue or advice , please let me know by \"problem report\" in the menu of MainActivity.\n\n
+        Optimized by zhuanghongji.\n\n
+    </string>
+
+    // Realm
+    <string name="realm_ci_0_name">Line Chart</string>
+    <string name="realm_ci_0_desc">Creating a LineChart with Realm.io database</string>
+    <string name="realm_ci_1_name">Bar Chart</string>
+    <string name="realm_ci_1_desc">Creating a BarChart with Realm.io database</string>
+    <string name="realm_ci_2_name">Horizontal Bar Chart</string>
+    <string name="realm_ci_2_desc">Creating a HorizontalBarChart with Realm.io database</string>
+    <string name="realm_ci_3_name">Scatter Chart</string>
+    <string name="realm_ci_3_desc">Creating a ScatterChart with Realm.io database</string>
+    <string name="realm_ci_4_name">Candle Stick Chart</string>
+    <string name="realm_ci_4_desc">Creating a CandleStickChart with Realm.io database</string>
+    <string name="realm_ci_5_name">Bubble Chart</string>
+    <string name="realm_ci_5_desc">Creating a BubbleChart with Realm.io database</string>
+    <string name="realm_ci_6_name">Pie Chart</string>
+    <string name="realm_ci_6_desc">Creating a PieChart with Realm.io database</string>
+    <string name="realm_ci_7_name">Radar Chart</string>
+    <string name="realm_ci_7_desc">Creating a RadarChart with Realm.io database</string>
+    <string name="realm_ci_8_name">Realm Wiki</string>
+    <string name="realm_ci_8_desc">This is the code related to the wiki entry about realm.io on the MPAndroidChart github page.</string>
+
+
+</resources>

@@ -81,7 +81,7 @@ public class ChartsDemo1Activity extends Activity {
         xl.setAvoidFirstLastClipping(true);
 
         // 几个x坐标轴之间才绘制？
-        // xl.setSpaceBetweenLabels(5);
+        xl.setSpaceBetweenLabels(5);
 
         // 如果false，那么x坐标轴将不可见
         xl.setEnabled(true);
@@ -119,7 +119,41 @@ public class ChartsDemo1Activity extends Activity {
                 addEntry();
             }
         });
+        // 每点击一次按钮，增加一个点
+        Button addButton1 = (Button) findViewById(R.id.button1);
+        addButton1.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                hideEntry();
+            }
+        });
     }
+
+    private void hideEntry() {
+        LineData data = mChart.getData();
+        LineDataSet set = (LineDataSet)data.getDataSetByIndex(0);
+        if(set!=null){
+            hintIndex = 1;
+            // 折线的颜色
+            set.setColor(android.R.color.transparent);
+
+            set.setCircleColor(android.R.color.transparent);
+            //set.setLineWidth(10f);
+            //set.setCircleSize(5f);
+            //set.setFillAlpha(128);
+            set.setFillColor(android.R.color.transparent);
+            set.setHighLightColor(android.R.color.transparent);
+            set.setValueTextColor(android.R.color.transparent);
+            //set.setValueTextSize(10f);
+            //set.setDrawValues(true);
+        }
+        mChart.invalidate();
+    }
+
+    private int hintIndex = -1;
+
+
 
     // 添加进去一个坐标点
     private void addEntry() {
@@ -129,11 +163,25 @@ public class ChartsDemo1Activity extends Activity {
         // 每一个LineDataSet代表一条线，每张统计图表可以同时存在若干个统计折线，这些折线像数组一样从0开始下标。
         // 本例只有一个，那么就是第0条折线
         LineDataSet set = (LineDataSet)data.getDataSetByIndex(0);
+        LineDataSet set1 = (LineDataSet)data.getDataSetByIndex(1);
+        LineDataSet set2 = (LineDataSet)data.getDataSetByIndex(2);
 
         // 如果该统计折线图还没有数据集，则创建一条出来，如果有则跳过此处代码。
         if (set == null) {
-            set = createLineDataSet();
+            set = createLineDataSet(0);
             data.addDataSet(set);
+        }
+
+        // 如果该统计折线图还没有数据集，则创建一条出来，如果有则跳过此处代码。
+        if (set1 == null) {
+            set1 = createLineDataSet(1);
+            data.addDataSet(set1);
+        }
+
+        // 如果该统计折线图还没有数据集，则创建一条出来，如果有则跳过此处代码。
+        if (set2 == null) {
+            set2 = createLineDataSet(2);
+            data.addDataSet(set2);
         }
 
         // 先添加一个x坐标轴的值
@@ -141,15 +189,22 @@ public class ChartsDemo1Activity extends Activity {
         data.addXValue((data.getXValCount()) + "");
         // 生成随机测试数
         float f = (float) ((Math.random()) * 20 + 50);
+        float f2 = (float) ((Math.random()) * 20 + 50);
+        float f1 = (float) ((Math.random()) * 20 + 50);
 
         // set.getEntryCount()获得的是所有统计图表上的数据点总量，
         // 如从0开始一样的数组下标，那么不必多次一举的加1
         Entry entry = new Entry(f, set.getEntryCount());
+        Entry entry1 = new Entry(f1, set1.getEntryCount());
+        Entry entry2 = new Entry(f2, set2.getEntryCount());
 
         // 往linedata里面添加点。注意：addentry的第二个参数即代表折线的下标索引。
         // 因为本例只有一个统计折线，那么就是第一个，其下标为0.
         // 如果同一张统计图表中存在若干条统计折线，那么必须分清是针对哪一条（依据下标索引）统计折线添加。
+
         data.addEntry(entry, 0);
+        data.addEntry(entry1, 1);
+        data.addEntry(entry2, 2);
 
         // 像ListView那样的通知数据更新
         mChart.notifyDataSetChanged();
@@ -158,7 +213,7 @@ public class ChartsDemo1Activity extends Activity {
         mChart.setVisibleXRangeMaximum(5);
 
         // y坐标轴线最大值
-        // mChart.setVisibleYRange(30, AxisDependency.LEFT);
+        //mChart.setVisibleYRange(30, AxisDependency.LEFT);
 
         // 将坐标移动到最新
         // 此代码将刷新图表的绘图
@@ -168,24 +223,46 @@ public class ChartsDemo1Activity extends Activity {
         // AxisDependency.LEFT);
     }
 
+    // 添加进去一个坐标点
+    private void addEntry1() {
+    }
+
     // 初始化数据集，添加一条统计折线，可以简单的理解是初始化y坐标轴线上点的表征
-    private LineDataSet createLineDataSet() {
+    private LineDataSet createLineDataSet(int index) {
 
         LineDataSet set = new LineDataSet(null, "动态添加的数据");
         set.setAxisDependency(AxisDependency.LEFT);
 
-        // 折线的颜色
-        set.setColor(ColorTemplate.getHoloBlue());
+        if(hintIndex == index){
+            // 折线的颜色
+            set.setColor(android.R.color.transparent);
 
-        set.setCircleColor(Color.WHITE);
+            set.setCircleColor(android.R.color.transparent);
+
+            set.setFillColor(android.R.color.transparent);
+            set.setHighLightColor(android.R.color.transparent);
+            set.setValueTextColor(android.R.color.transparent);
+            //set.setValueTextSize(10f);
+            set.setDrawValues(false);
+        }else {
+            // 折线的颜色
+            set.setColor(ColorTemplate.PASTEL_COLORS[index]);
+
+            set.setCircleColor(Color.WHITE);
+//            set.setLineWidth(10f);
+//            set.setCircleSize(5f);
+//            set.setFillAlpha(128);
+            set.setFillColor(ColorTemplate.PASTEL_COLORS[index]);
+            set.setHighLightColor(Color.GREEN);
+            set.setValueTextColor(Color.WHITE);
+            set.setDrawValues(true);
+
+        }
         set.setLineWidth(10f);
         set.setCircleSize(5f);
         set.setFillAlpha(128);
-        set.setFillColor(ColorTemplate.getHoloBlue());
-        set.setHighLightColor(Color.GREEN);
-        set.setValueTextColor(Color.WHITE);
-        set.setValueTextSize(10f);
-        set.setDrawValues(true);
+         set.setValueTextSize(10f);
+
         return set;
     }
 }
