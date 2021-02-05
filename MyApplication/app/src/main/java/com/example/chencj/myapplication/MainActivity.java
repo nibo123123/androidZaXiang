@@ -10,9 +10,10 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.telephony.SmsMessage;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,10 +21,8 @@ import android.widget.TextView;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.example.chencj.myapplication.activity.RecycleViewActivity;
-import com.example.chencj.myapplication.charts.ChartDemoActivity;
 import com.example.chencj.myapplication.flow.FlowActivity;
 import com.example.chencj.myapplication.hook.HookActivity;
-import com.example.chencj.myapplication.mpcharts.ChartsDemo1Activity;
 import com.example.chencj.myapplication.surfacefling.SurfaceDemoActivity;
 import com.example.chencj.myapplication.util.ViewAnimatorUtils;
 
@@ -178,16 +177,26 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, SurfaceDemoActivity.class));
     }
     public void encodesms(View v) {
-        SmsMessage.SubmitPdu submitPdu = SmsMessage.getSubmitPdu("10086", "1008611", "aä", false);
+        /*SmsMessage.SubmitPdu submitPdu = SmsMessage.getSubmitPdu("10086", "1008611", "aä", false);
         byte[] encodedMessage = submitPdu.encodedMessage;
         for (int i = 0; i < encodedMessage.length; i++) {
             Log.d("MainActivity chencj ", "encodesms: "+Integer.toHexString(encodedMessage[i])+" ");
-        }
-
+        }*/
+        mHandle.sendEmptyMessageDelayed(100,1000);
     }
 
     public void chart(View v){
         //startActivity(new Intent(this, ChartDemoActivity.class));
-        startActivity(new Intent(this, ChartsDemo1Activity.class));
+        //startActivity(new Intent(this, ChartsDemo1Activity.class));
+        mHandle.removeMessages(100);
+        Log.d("MainActivity chencj ", "chart: "+mHandle.hasMessages(100));
     }
+
+    private Handler mHandle = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            Log.d("MainActivity chencj ", "handleMessage: "+msg.what);
+        }
+    };
 }

@@ -13,13 +13,11 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import static com.example.chencj.myapplication.util.TransformUtils.rD8BIT2RF8BIT;
-import static com.example.chencj.myapplication.util.TransformUtils.rF8BIT2RD8BIT;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -220,5 +218,89 @@ public class ExampleUnitTest {
         byte[] bytes3 = TransformUtils.hexStringToBytes(s2);
         byte[] bytes4 = TransformUtils.rD8BIT2RF8BIT(bytes3);
         System.out.println("s3="+new String(bytes4,"unicode"));
+    }
+
+    @Test
+    public void f7(){
+        InterruptRunnable it = new InterruptRunnable();
+        Thread t1 = new Thread(it);
+        Thread t2 = new Thread(it);
+
+        t1.start();
+        t2.start();
+
+        for (int i = 0; i < 50; i++) {
+            if (i == 25) {
+                // 调用中断方法 来清楚状态
+                t1.interrupt();
+                t2.interrupt();
+                break;
+            }
+            System.out.println(i + "---");
+        }
+        System.out.println("主线程结束");
+    }
+    @Test
+    public void f8(){
+        System.out.println(haoAddOne("567775566"));
+        processIMEI("567775566");
+    }
+    private static final String STR_FORMAT = "000000000000";
+    public static String haoAddOne(String liuShuiHao){
+        Double intHao = Double.parseDouble(liuShuiHao);
+        //intHao++;
+        DecimalFormat df = new DecimalFormat(STR_FORMAT);
+        return df.format(intHao);
+    }
+
+    //000000-00-000000-0
+    private static final String STR_FORMATE = "000000000000000";
+    private String processIMEI(String str) {
+        String res = null;
+        String replaceAll = str.replaceAll("-", "");
+        System.out.println("processIMEI: replaceAll1="+replaceAll);
+        try {
+            if(replaceAll.length() > 15){
+                replaceAll = replaceAll.substring(0,15);
+            }else if(replaceAll.length() < 15) {
+                double parseDouble = Double.parseDouble(replaceAll);
+                DecimalFormat decimalFormat = new DecimalFormat(STR_FORMATE);
+                replaceAll = decimalFormat.format(parseDouble);
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println("processIMEI: replaceAll2="+replaceAll);
+        String substring1 = replaceAll.substring(0, 6);
+        String substring2 = replaceAll.substring(6, 8);
+        String substring3 = replaceAll.substring(8, 14);
+        String substring4 = replaceAll.substring(14, 15);
+
+        res = substring1 + "-" + substring2 + "-"+substring3+"-"+substring4;
+        System.out.println("processIMEI: res="+res);
+        return res;
+
+    }
+}
+
+class InterruptRunnable implements Runnable {
+    public synchronized void run() {
+        while(true) {
+            try {
+                // 线程1进来 带着锁 遇到了wait方法 等待
+                //放弃了CPU的执行权 但是 锁 会还回去
+                // 线程2也带着锁进来 又遇到wait方法 也等待
+                // 相当于两个线程都在这里等待
+                // 进入冷冻(中断)状态
+                // 解决冷冻(中断)状态
+                // 调用interrupt方法 清除该状态
+                wait();
+            }catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            System.out.println(Thread.currentThread().getName() + "...run");
+        }
     }
 }
