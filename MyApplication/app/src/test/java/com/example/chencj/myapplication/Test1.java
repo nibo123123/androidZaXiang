@@ -2,8 +2,10 @@ package com.example.chencj.myapplication;
 
 import org.junit.Test;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.Arrays;
 import java.util.Calendar;
 
 /**
@@ -107,6 +109,22 @@ public class Test1 {
         }
     }
     class Demo1 extends Demo<String>{
+
+    }
+
+    @Test
+    public void f4() throws Exception {
+        synchronized (Test1.class){
+            System.out.println("123456");
+            Test1.class.notify();
+            System.out.println("123");
+        }
+
+        Class<?> aClass = Class.forName("java.lang.Integer");
+        Field digits = aClass.getDeclaredField("digits");
+        digits.setAccessible(true);
+        char[] o = (char[]) digits.get(null);
+        System.out.println(Arrays.toString(o));
 
     }
 }

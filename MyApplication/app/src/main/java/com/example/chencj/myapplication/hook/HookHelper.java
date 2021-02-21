@@ -1,5 +1,6 @@
 package com.example.chencj.myapplication.hook;
 
+import android.app.NotificationManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +8,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
@@ -211,6 +213,72 @@ public class HookHelper {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public static void hookToast(Context context){
+        //hook点是toast的正真服务这  INotificationManager的实例
+
+    }
+
+    public static void hookNotificationManager(Context context) throws NoSuchFieldException, IllegalAccessException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException {
+        //hook点是NotificationManager的正真服务这  INotificationManager的实例
+        //获取NotificationManager的app层的对象
+        NotificationManager mNotificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
+        //获取NotificationManager的字节码
+        Class mNotificationManagerClass = mNotificationManager.getClass();
+        //从字节码中获取INotificationManager的属性
+        Object mINotificationManagerService = null;
+        Object mINotificationManagerService1 = null;
+        Field mINotificationManagerServiceField = null;
+
+        // 得到系统的 sService
+        Method mINotificationManagerServiceMethod = NotificationManager.class.getDeclaredMethod("getService");
+        mINotificationManagerServiceMethod.setAccessible(true);
+        mINotificationManagerService = mINotificationManagerServiceMethod.invoke(mNotificationManager);
+
+
+        mINotificationManagerServiceField = mNotificationManagerClass.getDeclaredField("sService");
+        mINotificationManagerServiceField.setAccessible(true);
+        //由于是静态的属性直接获得 对象 真正服务的对象实例
+        mINotificationManagerService1 = mINotificationManagerServiceField.get(null);//有些没有初始化，导致需要使用method的invoke来获取
+
+
+        if(mINotificationManagerService == null){
+            return;
+        }
+        //由于INotificationManager是接口，android.app.INotificationManager
+        //通过java的动态代理，增强代理
+        Object proxyINotificationManagerService = null;
+
+        proxyINotificationManagerService = Proxy.newProxyInstance(context.getClassLoader(),//类加载器
+                new Class[]{Class.forName("android.app.INotificationManager")},//要去增强的接口
+                new INotificationManagerInvocationHandler(mINotificationManagerService, context));//处理增强的回调
+
+
+        if(proxyINotificationManagerService == null)return;
+
+        mINotificationManagerServiceField.set(mNotificationManager,proxyINotificationManagerService);
+
+    }
+
+    private static class INotificationManagerInvocationHandler implements InvocationHandler{
+        Object mINotificationManagerService = null;
+        Context c;
+        public  INotificationManagerInvocationHandler(Object obj,Context c){
+            mINotificationManagerService = obj;
+            this.c = c;
+        }
+        @Override
+        public Object invoke(Object o, Method method, Object[] args) throws Throwable {
+            Log.d("INotificationManagerInvocationHandler chencj ", "invoke: method="+method.getName());
+            if (args != null && args.length > 0) {
+                for (Object arg : args) {
+                    Log.d("INotificationManagerInvocationHandler chencj ", "invoke:  arg=" + arg);
+                }
+            }
+            Toast.makeText(c,"add proxy",Toast.LENGTH_SHORT).show();
+            return method.invoke(mINotificationManagerService,args);
         }
     }
 }
