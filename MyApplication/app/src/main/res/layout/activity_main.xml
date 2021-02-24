@@ -28,7 +28,7 @@
         android:background="#000"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />-->
-    <LinearLayout
+    <!--<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -49,26 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
 
-        <Button
-            android:text="button_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="button_location"
-            android:id="@+id/button_location" />
-        <Button
-            android:text="button_hook"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="button_hook"
-            android:id="@+id/button_hook" />
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -90,8 +71,29 @@
             android:onClick="button_surfacefling"
             android:id="@+id/button_surfacefling" />
     </LinearLayout>
+-->
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <Button
+            android:text="button_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="button_location"
+            android:id="@+id/button_location" />
+        <Button
+            android:text="button_hook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="button_hook"
+            android:id="@+id/button_hook" />
+
+    </LinearLayout>
+    <!--<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -109,5 +111,19 @@
             android:layout_height="wrap_content"
             android:onClick="chart"
             android:id="@+id/chart" />
+    </LinearLayout>-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <Button
+            android:text="photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="photo"
+            android:id="@+id/photo" />
+
     </LinearLayout>
 </LinearLayout>

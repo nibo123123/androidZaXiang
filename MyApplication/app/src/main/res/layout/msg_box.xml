@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="220dip"
+        android:layout_height="158dip"
+        android:maxWidth="232dp"
+        android:maxHeight="205dp"
+        android:minWidth="214dp"
+        android:minHeight="190dp"
+
+        >
+        <TextView
+            android:id="@+id/tv_sedmsgbox"
+            android:layout_width="230dp"
+            android:layout_height="100dp"
+            android:maxWidth="220dp"
+            android:minHeight="70dp"
+            android:maxHeight="190dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_alignParentBottom="true"
+            android:textSize="24dp"
+            android:textColor="@android:color/black"
+            android:maxLines="3"
+            android:focusable="false"
+            android:textIsSelectable="false"
+            android:clickable="false"
+            android:editable="false"
+            android:inputType="none"
+            android:background="@android:color/transparent"
+            />
+
+        <TextView
+            android:id="@+id/tv_sedmsgbox_mid"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:maxWidth="214dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:textSize="24dp"
+            android:textColor="@android:color/black"
+            android:focusable="false"
+            android:textIsSelectable="false"
+            android:clickable="false"
+            android:editable="false"
+            android:inputType="none"
+            android:scrollbars="vertical"
+            android:background="@android:color/transparent"
+            />
+
+    </FrameLayout>
+</LinearLayout>

@@ -34,6 +34,8 @@
         <activity android:name=".charts.AboutActivity" />
         <activity android:name=".charts.TempoChartDemoActivity" />
         <activity android:name=".mpcharts.ChartsDemo1Activity" />
+        <activity android:name=".activity.EmptyActivity" />
+        <activity android:name=".photo_view_url_database.photo.PhotoActivity" />
     </application>
 
 </manifest>
