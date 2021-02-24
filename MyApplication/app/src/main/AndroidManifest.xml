@@ -36,6 +36,8 @@
         <activity android:name=".mpcharts.ChartsDemo1Activity" />
         <activity android:name=".activity.EmptyActivity" />
         <activity android:name=".photo_view_url_database.photo.PhotoActivity" />
+        <activity android:name=".lunbo.BigImgActivity" />
+        <activity android:name=".lunbo.LunBoPhotoActivity" />
     </application>
 
 </manifest>

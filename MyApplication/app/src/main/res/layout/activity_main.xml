@@ -124,6 +124,11 @@
             android:layout_height="wrap_content"
             android:onClick="photo"
             android:id="@+id/photo" />
-
+        <Button
+            android:text="lunbo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="lunbo"
+            android:id="@+id/lunbo" />
     </LinearLayout>
 </LinearLayout>

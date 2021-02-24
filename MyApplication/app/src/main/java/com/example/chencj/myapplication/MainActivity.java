@@ -23,6 +23,7 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.example.chencj.myapplication.activity.RecycleViewActivity;
 import com.example.chencj.myapplication.flow.FlowActivity;
 import com.example.chencj.myapplication.hook.HookActivity;
+import com.example.chencj.myapplication.lunbo.LunBoPhotoActivity;
 import com.example.chencj.myapplication.photo_view_url_database.photo.PhotoActivity;
 import com.example.chencj.myapplication.surfacefling.SurfaceDemoActivity;
 import com.example.chencj.myapplication.util.ViewAnimatorUtils;
@@ -203,5 +204,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void photo(View v){
         startActivity(new Intent(this, PhotoActivity.class));
+    }
+    public void lunbo(View v){
+        startActivity(new Intent(this, LunBoPhotoActivity.class));
     }
 }
