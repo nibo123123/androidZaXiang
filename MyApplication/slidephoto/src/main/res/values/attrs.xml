@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--为自定义view设置 定制化view属性-->
+    <declare-styleable name="SlidePhotoView">
+        <!--操作验证图片的模式-->
+        <attr name="slide_mode" format="enum">
+            <enum name="mode_bar" value="1"/>
+            <enum name="mode_motion" value="2"/>
+        </attr>
+
+        <!--背景 写道slideimageview中-->
+        <attr name="bg_src" format="reference"/>
+
+        <!--写到slideseekbar中-->
+        <attr name="progressDrawable" format="reference"/>
+        <attr name="progressThumb" format="reference"/>
+        <!--最大失败次数-->
+        <attr name="max_fail_count" format="integer"/>
+        <!--缺影的正方形大小-->
+        <attr name="blockSize" format="dimension"/>
+    </declare-styleable>
+</resources>

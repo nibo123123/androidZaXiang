@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.chencj.myapplication.App;
 import com.example.chencj.myapplication.R;
+import com.squareup.picasso.Picasso;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -225,6 +226,7 @@ public class PhotoActivity extends Activity {
         try {
 
             Glide.with(c).load(url).into(imageView);
+            Picasso.with(c).load(url).into(imageView);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

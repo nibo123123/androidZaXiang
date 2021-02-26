@@ -118,7 +118,7 @@
         android:orientation="horizontal"
         >
 
-        <Button
+        <!--<Button
             android:text="photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -130,5 +130,30 @@
             android:layout_height="wrap_content"
             android:onClick="lunbo"
             android:id="@+id/lunbo" />
+        <Button
+            android:text="multiprocess"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="multiprocess"
+            android:id="@+id/multiprocess" />
+        <Button
+            android:text="multiprocess1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="multiprocess1"
+            android:id="@+id/multiprocess1" />-->
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <Button
+            android:text="slide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="slide"
+            android:id="@+id/slide" />
+        </LinearLayout>
 </LinearLayout>

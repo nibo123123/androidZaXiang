@@ -38,6 +38,17 @@
         <activity android:name=".photo_view_url_database.photo.PhotoActivity" />
         <activity android:name=".lunbo.BigImgActivity" />
         <activity android:name=".lunbo.LunBoPhotoActivity" />
+        <activity android:name=".multiprocess.FirstActivity"
+            ></activity>
+        <activity android:name=".multiprocess.SecondActivity"
+            android:process=":self2"
+            ></activity>
+        <activity android:name=".slide.DemoActivity" />
+
+        <provider
+            android:authorities="com.example.chencj.myapplication.multiprocess"
+            android:name=".multiprocess.provider.MultiProcessProvider"
+            />
     </application>
 
 </manifest>

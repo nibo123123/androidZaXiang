@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="SlideSeekBarStyle" parent="Base.Widget.AppCompat.SeekBar">
+        <item name="android:thumb">@drawable/thumb</item><!--圆圈-->
+        <item name="android:progressDrawable">@drawable/po_seekbar</item><!--背景-->
+    </style>
+</resources>

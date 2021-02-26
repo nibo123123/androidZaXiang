@@ -24,7 +24,10 @@ import com.example.chencj.myapplication.activity.RecycleViewActivity;
 import com.example.chencj.myapplication.flow.FlowActivity;
 import com.example.chencj.myapplication.hook.HookActivity;
 import com.example.chencj.myapplication.lunbo.LunBoPhotoActivity;
+import com.example.chencj.myapplication.multiprocess.FirstActivity;
+import com.example.chencj.myapplication.multiprocess.SecondActivity;
 import com.example.chencj.myapplication.photo_view_url_database.photo.PhotoActivity;
+import com.example.chencj.myapplication.slide.DemoActivity;
 import com.example.chencj.myapplication.surfacefling.SurfaceDemoActivity;
 import com.example.chencj.myapplication.util.ViewAnimatorUtils;
 
@@ -205,7 +208,18 @@ public class MainActivity extends AppCompatActivity {
     public void photo(View v){
         startActivity(new Intent(this, PhotoActivity.class));
     }
-    public void lunbo(View v){
+    public void lunbo(View v) {
         startActivity(new Intent(this, LunBoPhotoActivity.class));
     }
+    public void multiprocess(View v){
+        startActivity(new Intent(this, FirstActivity.class));
+    }
+    public void multiprocess1(View v){
+        startActivity(new Intent(this, SecondActivity.class));
+    }
+    public void slide(View v){
+        startActivity(new Intent(this, DemoActivity.class));
+    }
+
+
 }
