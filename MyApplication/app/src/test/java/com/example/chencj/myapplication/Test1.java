@@ -2,17 +2,22 @@ package com.example.chencj.myapplication;
 
 import org.junit.Test;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.RandomAccessFile;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
+import java.net.MalformedURLException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketAddress;
+import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.channels.SelectionKey;
@@ -25,6 +30,10 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import static android.R.attr.start;
+import static com.blankj.utilcode.util.FileUtils.getFileName;
+import static com.blankj.utilcode.util.StringUtils.isSpace;
 
 /**
  * Created by CHENCJ on 2021/1/28.
@@ -369,6 +378,135 @@ public class Test1 {
             }
             status=-1;//因为设置了500毫秒的超时 时间
         }
+    }
+
+    private static  final  int THREAD_COUNT = 3;
+    @Test
+    /**
+     * 断点续传的例子
+     */
+
+
+    public void f5() throws Exception {
+
+        String path = "http://192.168.2.128:8180/down_file.txt";
+        URL url  = new URL(path);
+
+        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+
+        urlConnection.setConnectTimeout(10 * 1000);
+
+        urlConnection.setRequestMethod("GET");
+
+        urlConnection.connect();
+
+        int responseCode = urlConnection.getResponseCode();
+
+        //得到文件的总长度，为断点续传设置 startinde和endindex
+        if(responseCode == 200){
+            int contentLength = urlConnection.getContentLength();
+
+            //创建文件，等大小的
+            RandomAccessFile file = new RandomAccessFile(getFileName(path), "rw");
+
+            file.setLength(contentLength);
+
+
+            //设计断点续传，多线程
+            //使用3个线程来设计，得到开始和结束的位置
+            int downSize = contentLength/THREAD_COUNT;
+            for (int i = 0; i < THREAD_COUNT; i++) {
+                int start = i * downSize;
+                int end = (i+1) * downSize - 1;
+                if(i == THREAD_COUNT - 1){
+                    end = contentLength - 1;
+                }
+                System.out.println(1111);
+                new MultiDownThread(path,start,end).start();
+            }
+
+
+        }
+    }
+
+    class MultiDownThread extends Thread{
+
+        private int startIndex;
+        private int endIndex;
+
+        private String path;
+        public MultiDownThread(String path,int startIndex,int endIndex){
+
+            this.path = path;
+            this.startIndex = startIndex;
+            this.endIndex = endIndex;
+
+        }
+
+        @Override
+        public void run() {
+            URL url  = null;
+            try {
+                url = new URL(path);
+
+
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+
+                urlConnection.setConnectTimeout(10 * 1000);
+
+                urlConnection.setRequestMethod("GET");
+
+                // 断点下载，从指定位置 继续下载
+                urlConnection.setRequestProperty("Range", "bytes=" + startIndex + "-" + endIndex);
+
+                int responseCode = urlConnection.getResponseCode();
+                System.out.println(toString());
+                System.out.println(responseCode);
+                //设置了setRequestProperty响应码是206
+                if(responseCode == 206){
+
+                    //获取文件
+                    RandomAccessFile file = new RandomAccessFile(getFileName(path), "rw");
+                    //为文件设置当前下载的开始位置
+                    file.seek(startIndex);
+                    InputStream inputStream = urlConnection.getInputStream();
+                    byte[] buff = new byte[1024];
+                    int len = -1;
+                    while ((len=inputStream.read(buff) )!= -1){
+                        //写入内容到文件中
+                        file.write(buff,0,len);
+                    }
+                    file.close();
+                }
+
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public String toString() {
+            return "MultiDownThread{" +
+                    "startIndex=" + startIndex +
+                    ", endIndex=" + endIndex +
+                    ", path='" + path + '\'' +
+                    ", threadname='" + Thread.currentThread().getName() + '\'' +
+                    '}';
+        }
+    }
+
+    /**
+     * Return the name of file.
+     *
+     * @param filePath The path of file.
+     * @return the name of file
+     */
+    public static String getFileName(final String filePath) {
+        if (isSpace(filePath)) return "";
+        int lastSep = filePath.lastIndexOf("/");
+        return lastSep == -1 ? filePath : filePath.substring(lastSep + 1);
     }
 
 }
