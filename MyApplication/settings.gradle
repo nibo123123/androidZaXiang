@@ -1,1 +1,2 @@
-include ':app', ':slidephoto', ':commonlib'
+//把project中的库，在这里引入
+include ':app', ':slidephoto', ':commonlib',':liveRtmpPushSDK',':pushStreamLibrarySDK'
