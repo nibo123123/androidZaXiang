@@ -5,8 +5,8 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.blankj.utilcode.util.ObjectUtils;
 import com.example.slidephoto.utils.IOUtils;
-import com.example.slidephoto.utils.StringUtils;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -85,7 +85,7 @@ public class BitmapAsyncTask extends AsyncTask<String,Integer,Bitmap> {
     @Override
     protected void onPostExecute(Bitmap bitmap) {
         super.onPostExecute(bitmap);
-        if(StringUtils.isNotNull(updateBitmapInterface)){
+        if(ObjectUtils.isNotEmpty(updateBitmapInterface)){
             updateBitmapInterface.postUpdateBitmap(bitmap);
         }
     }

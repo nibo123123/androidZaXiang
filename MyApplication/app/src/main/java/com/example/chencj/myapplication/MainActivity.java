@@ -26,10 +26,12 @@ import com.example.chencj.myapplication.hook.HookActivity;
 import com.example.chencj.myapplication.lunbo.LunBoPhotoActivity;
 import com.example.chencj.myapplication.multiprocess.FirstActivity;
 import com.example.chencj.myapplication.multiprocess.SecondActivity;
+import com.example.chencj.myapplication.mvp.activity.MVPActivity;
 import com.example.chencj.myapplication.photo_view_url_database.photo.PhotoActivity;
 import com.example.chencj.myapplication.slide.DemoActivity;
 import com.example.chencj.myapplication.surfacefling.SurfaceDemoActivity;
 import com.example.chencj.myapplication.util.ViewAnimatorUtils;
+import com.example.chencj.myapplication.video.Video1Activity;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -221,5 +223,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, DemoActivity.class));
     }
 
+    public void video(View v){
+        startActivity(new Intent(this, Video1Activity.class));
+    }
+    public void mvpactivity(View v){
+        startActivity(new Intent(this, MVPActivity.class));
+    }
 
 }

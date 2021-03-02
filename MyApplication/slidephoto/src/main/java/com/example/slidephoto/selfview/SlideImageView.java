@@ -12,10 +12,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.blankj.utilcode.util.ObjectUtils;
 import com.example.slidephoto.common.PositionInfo;
 import com.example.slidephoto.strategy.DefaultSlideStrategy;
 import com.example.slidephoto.strategy.SlideStrategy;
-import com.example.slidephoto.utils.StringUtils;
 
 /**
  * Created by CHENCJ on 2021/2/25.
@@ -239,13 +239,13 @@ public class SlideImageView extends ImageView {
                 && Math.abs(slideInfo.top - shadowInfo.top) < PARTIAL_FAIL){
             //成功
             success();
-            if(StringUtils.isNotNull(verifyCallback)){
+            if(ObjectUtils.isNotEmpty(verifyCallback)){
                 verifyCallback.successCallback();
             }
         }else {
             //失败
             fail();
-            if(StringUtils.isNotNull(verifyCallback)){
+            if(ObjectUtils.isNotEmpty(verifyCallback)){
                 verifyCallback.failCallback();
             }
         }

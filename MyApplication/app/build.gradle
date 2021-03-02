@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "29.0.3"
+    buildToolsVersion rootProject.ext.android['buildToolsVersion']
     defaultConfig {
         applicationId "com.example.chencj.myapplication"
         minSdkVersion 15
@@ -24,12 +24,11 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    testCompile 'junit:junit:4.12'
+    //compile rootProject.ext.dependencies['appcompat-v7']
+    //testCompile rootProject.ext.dependencies['junit']
     // https://mvnrepository.com/artifact/com.blankj/utilcode
-    compile 'com.blankj:utilcode:1.23.7'
     // https://mvnrepository.com/artifact/com.github.bumptech.glide/glide
-    compile 'com.github.bumptech.glide:glide:3.7.0'
+    //compile 'com.github.bumptech.glide:glide:3.7.0'
     // https://mvnrepository.com/artifact/com.squareup.picasso/picasso
     compile 'com.squareup.picasso:picasso:2.5.2'
 
@@ -40,22 +39,25 @@ dependencies {
     // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
     //    compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '3.8.0'
     // https://mvnrepository.com/artifact/com.squareup.okhttp/okhttp
-    compile 'com.squareup.okhttp:okhttp:2.7.5'
+    //compile 'com.squareup.okhttp:okhttp:2.7.5'
+    //compile rootProject.ext.dependencies['okhttp3']
     //compile 'com.squareup.leakcanary:leakcanary-android:1.5.2'
     //compile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.2'
-    compile 'com.android.support:recyclerview-v7:25.0.0'
+    //compile 'com.android.support:recyclerview-v7:25.0.0'
     compile 'com.hanks:htextview-base:0.1.1'
     compile 'com.github.lecho:hellocharts-android:v1.5.8'
     // https://mvnrepository.com/artifact/com.github.PhilJay/MPAndroidChart
     // compile group: 'com.github.PhilJay', name: 'MPAndroidChart', version: 'v3.0.3'
     // https://mvnrepository.com/artifact/com.github.PhilJay/MPAndroidChart
     //compile group: 'com.github.PhilJay', name: 'MPAndroidChart', version: 'v2.2.4'
-    compile files('libs/MPAndroidChart-v2.2.4.jar')
+    //compile files('libs/MPAndroidChart-v2.2.4.jar')
+    compile rootProject.ext.dependencies['MPAndroidChart']
+    //compile 'com.youth.banner:banner:1.4.9'
 
-    compile 'com.youth.banner:banner:1.4.9'
-
-    compile 'com.github.chrisbanes.photoview:library:1.2.4'
+    //compile 'com.github.chrisbanes.photoview:library:1.2.4'
 
     //加入其他的需要编译的库
     compile project(':slidephoto')
+    //在App中加入CommonLib的库
+    compile project(':commonlib')
 }

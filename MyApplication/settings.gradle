@@ -1,1 +1,1 @@
-include ':app', ':slidephoto'
+include ':app', ':slidephoto', ':commonlib'

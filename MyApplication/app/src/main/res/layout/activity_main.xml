@@ -143,7 +143,7 @@
             android:onClick="multiprocess1"
             android:id="@+id/multiprocess1" />-->
     </LinearLayout>
-
+<!--
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -155,5 +155,26 @@
             android:layout_height="wrap_content"
             android:onClick="slide"
             android:id="@+id/slide" />
-        </LinearLayout>
+        <Button
+            android:text="video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="video"
+            android:id="@+id/video" />
+        </LinearLayout>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <Button
+            android:text="mvpactivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="mvpactivity"
+            android:id="@+id/mvpactivity" />
+
+    </LinearLayout>
 </LinearLayout>
