@@ -282,42 +282,72 @@ public class Test1 {
 
     @Test
     public void fNIOServerFunc() throws Exception {
-        ServerSocketChannel server=ServerSocketChannel.open();
-        server.configureBlocking(false);
-        server.socket().bind(new InetSocketAddress("127.0.0.2", 8080));
-        Selector selector=Selector.open();
-        server.register(selector, SelectionKey.OP_ACCEPT);
+        ServerSocketChannel serverChannel=ServerSocketChannel.open();//创建服务端的channel
+        serverChannel.configureBlocking(false);//设置非阻塞
+        ServerSocket serverSocket = serverChannel.socket();//得到ServerSocket对象
+        serverSocket.bind(new InetSocketAddress("127.0.0.1", 8080));//绑定ip port
+        Selector selector=Selector.open();//实例化Selector
+        //selector.close();//关闭资源
+        serverChannel.register(selector, SelectionKey.OP_ACCEPT);//把selector注册到serverChannel,并设置感兴趣的selector事件
         System.out.println("服务器启动完毕!!");
 
         while(true){
-            int status=selector.select();//不建议设置超时 时间
+            int status=selector.select();//不建议设置超时 阻塞 直到有感兴趣的事件完成  返回感兴趣的事件个数
             if(status>0){
-                Iterator<SelectionKey> keys=selector.selectedKeys().iterator();
+                Iterator<SelectionKey> keys=selector.selectedKeys().iterator();//遍历感兴趣的事件个数
                 while(keys.hasNext()){
                     SelectionKey key=keys.next();
                     keys.remove();
-                    if(key.isAcceptable()){
+                    if(key.isAcceptable()){//得到有可接受ACCEPT感兴趣的事件，
                         System.out.println("可接受客户端请求:"+status);
-                        ServerSocketChannel ssc=(ServerSocketChannel)key.channel();
+                        //得到绑定的ServerSocketChannel  channel
+                        ServerSocketChannel ssc=(ServerSocketChannel)key.channel();//selectkey持有一个channel
+                        //key.selector();//selectkey持有一个当前的Selector的实例
+                        //通过ServerSocketChannel，accept得到，SocketChannel，并关注READ的selector事件
                         SocketChannel channel=ssc.accept();
                         ByteBuffer bf=ByteBuffer.wrap(channel.getRemoteAddress().toString().getBytes("utf-8"));
+                        /*
+                        * Buffer
+                        * 标记、位置、限制和容量值遵守以下不变式：
+                        0 <= 标记(mark) <= 位置（position） <= 限制（limit） <= 容量（capacity）
+
+                        buffer实例的方法：
+                        allocate(capacity);: 在堆上创建大小的对象
+                        allocateDirect(capacity);在堆外空间上创建指定大小的对象
+                        wrap（byte[]）通过存在的数组创建对象
+                        wrap（byte[],offerset,length）通过存在的数组创建对象
+
+                        方法：
+                        buffer.put() :往Buffer中写入数据 pos 位置移动
+                        buffer.flip() ：读写模式切换 -》lim指向pos,pos指向mark
+                        buffer.get() ：从Buffer中读取数据 ->pos 位置移动
+                        buffer.clear(): 清空Buffer缓存 mark=-1,pos=0, lim=cap=capacity
+                        * */
                         int size=channel.write(bf);
                         if(size<=0){
                             key.interestOps(SelectionKey.OP_WRITE); //注册写事件
                             channel.write(bf);
                             key.interestOps(key.interestOps() & ~SelectionKey.OP_WRITE);//取消注册写事件
                         }
+                        //SocketChannel设置非阻塞
                         channel.configureBlocking(false);
+                        //SocketChannel，并关注READ的selector事件
                         channel.register(selector,SelectionKey.OP_READ);
-                    }else if(key.isReadable()){
+                    }else if(key.isReadable()){//对READ事件 感兴趣的Selector
                         System.out.println("可读客户端流:"+status);
+                        //获取SocketChannel
                         SocketChannel sc=(SocketChannel)key.channel();
+                        //分配缓存大侠
                         ByteBuffer buffer=ByteBuffer.allocateDirect(1024);
                         String msg="";
+                        //循环去读 SocketChannel内容到写到buffer中
                         while(sc.read(buffer)>0){
-                            buffer.flip();
+                            //读写反转，
+                            buffer.flip();//开始读出来
+                            //解析缓存中的字节，编译字符串
                             msg+= Charset.forName("utf-8").decode(buffer).toString();
                         }
+                        //清除buffer内容
                         (buffer).clear();
                         System.out.println("服务端接收到客户端"+sc.getRemoteAddress()+"消息"+msg);
                     }
@@ -334,41 +364,60 @@ public class Test1 {
         ExecutorService threadPool = Executors.newFixedThreadPool(10);
 
         int i = 1;
-        SocketChannel channel=SocketChannel.open();
+        //打开客户端的Channel
+        SocketChannel clientChannel=SocketChannel.open();
+        //构造ip地址
         SocketAddress address=new InetSocketAddress("127.0.0.2", 8080);
-        channel.configureBlocking(false);
-        channel.connect(address);
+        //设置非阻塞
+        clientChannel.configureBlocking(false);
+        //连接服务端
+        clientChannel.connect(address);
+        //打开selector
         Selector selector=Selector.open();
-        channel.register(selector, SelectionKey.OP_CONNECT);
+        //selector注册到clientChannel并关注连接事件
+        clientChannel.register(selector, SelectionKey.OP_CONNECT);
         while(true){
-            int status=selector.select(500);//将会阻塞感兴趣的IO发生
+            int status=selector.select();//将会阻塞，直到感兴趣的IO发生
             //selectNow不会阻塞，调用后立即返回状态 需要在循环中不停获取
             //status=selector.selectNow();
             if(status>0){
                 System.out.println("channel:"+i+"获得服务器响应，响应状态"+status);
+                //遍历感兴趣的selectorkey
                 Set<SelectionKey> keys=selector.selectedKeys();
                 Iterator<SelectionKey> its=keys.iterator();
                 while(its.hasNext()){
                     SelectionKey key=its.next();
-                    if(key.isConnectable()){
+                    if(key.isConnectable()){//得到连接的事件
+                        //拿到channel
                         SocketChannel sc=(SocketChannel)key.channel();
-                        sc.finishConnect();//阻塞到客户端 与服务器端建立连接
+                        //到客户端 与服务器端建立连接，完成连接
+                        sc.finishConnect();
+                        //设置非阻塞
                         sc.configureBlocking(false);
                         System.out.println("channel:"+i+"连接建立完毕!!");
+                        //写入到buffer
                         ByteBuffer bf=ByteBuffer.wrap(("channel:"+i).getBytes("utf-8"));
+                        //读出buffer 并 写到channel
                         int size=sc.write(bf);
-                        if(size<=0){
-                            key.interestOps(SelectionKey.OP_WRITE); //注册写事件
+                        if(size<=0){//说明channel中
+                            ////selectkey 感兴趣  写事件
+                            key.interestOps(SelectionKey.OP_WRITE);
+                            //再次写入channel
                             sc.write(bf);
-                            key.interestOps(key.interestOps() & ~SelectionKey.OP_WRITE);//取消注册写事件
+                            //取消注册写事件
+                            key.interestOps(key.interestOps() & ~SelectionKey.OP_WRITE);
                         }
+                        //注册读感兴趣事件
                         sc.register(selector,SelectionKey.OP_READ);
-                    }else if(key.isReadable()){
+                    }else if(key.isReadable()){//读的感兴趣事件 触发
+
                         SocketChannel sc=(SocketChannel)key.channel();
                         ByteBuffer buffer=ByteBuffer.allocateDirect(1024);
                         String msg="";
-                        while(sc.read(buffer)>0){
+                        while(sc.read(buffer)>0){//从channel读出来，写到buffer
+                            //调整读写
                             buffer.flip();
+                            //解析
                             msg+=Charset.forName("utf-8").decode(buffer).toString();
                         }
                         buffer.clear();
