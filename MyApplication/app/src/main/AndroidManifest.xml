@@ -48,6 +48,7 @@
         <activity android:name=".slide.DemoActivity" />
         <activity android:name=".video.Video1Activity" />
         <activity android:name=".mvp.activity.MVPActivity" />
+        <activity android:name=".fix.FixActivity" />
 
         <provider
             android:authorities="com.example.chencj.myapplication.multiprocess"

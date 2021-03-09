@@ -175,6 +175,11 @@
             android:layout_height="wrap_content"
             android:onClick="mvpactivity"
             android:id="@+id/mvpactivity" />
-
+        <Button
+            android:text="fixedactivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="fixedactivity"
+            android:id="@+id/fixedactivity" />
     </LinearLayout>
 </LinearLayout>

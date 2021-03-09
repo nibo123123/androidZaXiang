@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.example.chencj.myapplication.activity.RecycleViewActivity;
+import com.example.chencj.myapplication.fix.FixActivity;
 import com.example.chencj.myapplication.flow.FlowActivity;
 import com.example.chencj.myapplication.hook.HookActivity;
 import com.example.chencj.myapplication.lunbo.LunBoPhotoActivity;
@@ -229,5 +230,7 @@ public class MainActivity extends AppCompatActivity {
     public void mvpactivity(View v){
         startActivity(new Intent(this, MVPActivity.class));
     }
-
+    public void fixedactivity(View v){
+        startActivity(new Intent(this, FixActivity.class));
+    }
 }
