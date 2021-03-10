@@ -1,2 +1,0 @@
-com.example.chencj.myapplication.MainActivity.class
-com.example.chencj.myapplication.App

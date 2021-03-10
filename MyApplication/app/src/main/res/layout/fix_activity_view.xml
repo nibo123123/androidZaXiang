@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.chencj.myapplication.fix.DemoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <EditText
+        android:id="@+id/fix_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/fix_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     <Button
         android:onClick="fixed"
         android:text="fixed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-</LinearLayout>
+    <com.example.chencj.myapplication.fix.DemoView
+        android:id="@+id/demoview_id"
+        android:background="@android:color/darker_gray"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent" />
+</com.example.chencj.myapplication.fix.DemoLinearLayout>

@@ -49,6 +49,7 @@
         <activity android:name=".video.Video1Activity" />
         <activity android:name=".mvp.activity.MVPActivity" />
         <activity android:name=".fix.FixActivity" />
+        <activity android:name=".bezier.BezierActivity" />
 
         <provider
             android:authorities="com.example.chencj.myapplication.multiprocess"

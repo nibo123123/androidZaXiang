@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.example.chencj.myapplication.activity.RecycleViewActivity;
+import com.example.chencj.myapplication.bezier.BezierActivity;
 import com.example.chencj.myapplication.fix.FixActivity;
 import com.example.chencj.myapplication.flow.FlowActivity;
 import com.example.chencj.myapplication.hook.HookActivity;
@@ -232,5 +233,8 @@ public class MainActivity extends AppCompatActivity {
     }
     public void fixedactivity(View v){
         startActivity(new Intent(this, FixActivity.class));
+    }
+    public void bezier(View v){
+        startActivity(new Intent(this, BezierActivity.class));
     }
 }
