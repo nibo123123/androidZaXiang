@@ -1,7 +1,5 @@
 package com.example.chencj.myapplication.util;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 
 
@@ -30,6 +28,12 @@ public class TransformUtils {
         ret = new byte[sz/2];
 
         for (int i=0 ; i <sz ; i+=2) {
+            //因为是Hex是16bit的编码，最大时0x0F或0x0f  十进制 15  二进制 0B00001111
+            //所以只会用到低四位
+            //对于一个byte是8bit存储
+            //所以一个byte可以存储两个hex的字符
+            //byte的高4位存储 第一个，低四位存储第二个  凑齐一个字节
+            //做for把每个byte进行拼接
             ret[i/2] = (byte) ((hexCharToInt(s.charAt(i)) << 4)
                     | hexCharToInt(s.charAt(i+1)));
         }
@@ -41,15 +45,18 @@ public class TransformUtils {
     bytesToHexString(byte[] bytes) {
         if (bytes == null) return null;
 
+        //反过来
+        //字节转成hex的字符
+        //数量*2
         StringBuilder ret = new StringBuilder(2*bytes.length);
 
         for (int i = 0 ; i < bytes.length ; i++) {
             int b;
-
+            //一个byte的高四位拿到
             b = 0x0f & (bytes[i] >> 4);
 
             ret.append("0123456789abcdef".charAt(b));
-
+            //一个byte的低四位拿到
             b = 0x0f & bytes[i];
 
             ret.append("0123456789abcdef".charAt(b));

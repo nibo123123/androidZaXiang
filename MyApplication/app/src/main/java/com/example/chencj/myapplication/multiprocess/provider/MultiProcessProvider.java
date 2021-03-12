@@ -2,7 +2,6 @@ package com.example.chencj.myapplication.multiprocess.provider;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 
@@ -24,49 +23,6 @@ public class MultiProcessProvider extends ContentProvider {
     public boolean onCreate() {
         return false;
     }
-
-    public static void setStringValue(Context context, String key, String value) {
-        ContentValues contentvalues = new ContentValues();
-        contentvalues.put(EXTRA_TYPE, TYPE_STRING);
-        contentvalues.put(EXTRA_KEY, key);
-        contentvalues.put(EXTRA_VALUE, value);
-
-        try {
-            //使用contentprovider来进行跨进程
-            //主要是通过getContentResolver通过MY_CONTENT_PROVIDER_URI
-            //在getContentResolver通过aidl跨进程处理
-            // 对应的uri的authorities找到实现的contentProvider
-            context.getContentResolver().update(MY_CONTENT_PROVIDER_URI, contentvalues, null, null);
-        } catch (Exception e ) {
-            e.printStackTrace();
-        }
-    }
-
-    public static String getStringValue(Context context, String key, String defValue){
-        ContentValues contentvalues = new ContentValues();
-        contentvalues.put(EXTRA_TYPE, TYPE_STRING);
-        contentvalues.put(EXTRA_KEY, key);
-        contentvalues.put(EXTRA_VALUE, defValue);
-
-        Uri result;
-
-        try {
-            //使用contentprovider来进行跨进程
-            //主要是通过getContentResolver通过MY_CONTENT_PROVIDER_URI
-            //在getContentResolver通过aidl跨进程处理
-            // 对应的uri的authorities找到实现的contentProvider
-            result = context.getContentResolver().insert(MY_CONTENT_PROVIDER_URI, contentvalues);
-        } catch (Exception e) {
-            return defValue;
-        }
-
-        if (result == null) {
-            return defValue;
-        }
-
-        return result.toString().substring(LENGTH_CONTENT_URI);
-    }
-
     
     @Override
     public Cursor query( Uri uri,  String[] projection,  String selection,
@@ -89,6 +45,8 @@ public class MultiProcessProvider extends ContentProvider {
 
         String res = "";
         int type = values.getAsInteger(EXTRA_TYPE);
+        //定制化一些处理
+        //insert做SP的查询SP的操作
         if (type == TYPE_STRING) {
             res += MultiProcessSharedPreferencesManager.getInstance(getContext()).getString(
                     values.getAsString(EXTRA_KEY), values.getAsString(EXTRA_VALUE));
@@ -109,6 +67,8 @@ public class MultiProcessProvider extends ContentProvider {
             return 0;
         }
 
+        //定制化处理
+        //update做出SP的添加操作
         int type = values.getAsInteger(EXTRA_TYPE);
         if (type == TYPE_STRING) {
             MultiProcessSharedPreferencesManager.getInstance(getContext()).setString(

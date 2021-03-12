@@ -6,7 +6,14 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_get_sp"
+        android:id="@+id/btn_get_sp_2"
         android:text="get_sp"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_save_sp_2"
+        android:text="save_sp"
         />
 </LinearLayout>

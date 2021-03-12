@@ -43,7 +43,7 @@
         <activity android:name=".multiprocess.FirstActivity"
             ></activity>
         <activity android:name=".multiprocess.SecondActivity"
-            android:process=":self2"
+            android:process="com.process.self2"
             ></activity>
         <activity android:name=".slide.DemoActivity" />
         <activity android:name=".video.Video1Activity" />

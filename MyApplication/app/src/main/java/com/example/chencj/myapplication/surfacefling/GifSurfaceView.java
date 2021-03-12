@@ -84,6 +84,12 @@ public class GifSurfaceView extends SurfaceView implements SurfaceHolder.Callbac
     }
 
     @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+
+    }
+
+    @Override
     public void surfaceCreated(SurfaceHolder holder) {
 
     }
